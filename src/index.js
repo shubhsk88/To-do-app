@@ -1,12 +1,20 @@
 import "./styles/style.css";
-
 import { Task, renderTask } from "./Components/TaskcCreator";
 import { Project, renderProject } from "./Components/ProjectCreator";
 
-let c = new Task("dsjk", "asdkl", "asdkl", "dajkl");
+const projectsList = []
 
-let defa = new Project("WORK");
-defa.addTaskToList(c);
-let render = renderProject(defa);
-const content = document.getElementById("content");
-content.appendChild(render);
+const newProjectBtn = document.querySelector('.new-project-btn');
+const projectsListDiv = document.querySelector('.projects-list');
+
+newProjectBtn.addEventListener('click', ()=>{
+  const projectName = document.getElementById('project-name').value;
+  const newProject = new Project(projectName);
+  projectsList.push(newProject);
+  projectsListDiv.appendChild(renderProject(newProject));
+})
+
+for(let i=0; i < projectsList.length; i++) {
+  projectsListDiv.appendChild(renderProject(projectsList[i]));
+}
+

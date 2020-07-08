@@ -11,11 +11,14 @@ class Project {
 }
 
 const renderProject = (project) => {
+  const projectCard = document.createElement("div");
+  projectCard.textContent = project.name;
   const listContainer = document.createElement("ul");
   for (let i = 0; i < project.taskList.length; i++) {
     listContainer.appendChild(renderTask(project.taskList[i]));
   }
-  return listContainer;
+  projectCard.appendChild(listContainer);
+  return projectCard;
 };
 
 export { renderProject, Project };
