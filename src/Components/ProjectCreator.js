@@ -1,4 +1,4 @@
-import { renderTask } from "./TaskcCreator";
+import { renderTask } from './TaskCreator';
 
 class Project {
   constructor(name) {
@@ -8,12 +8,16 @@ class Project {
   addTaskToList(task) {
     this.taskList.push(task);
   }
+  removeTaskFromList(taskIdx) {
+    this.taskList.splice(taskIdx, 1);
+  }
+
 }
 
 const renderProject = (project) => {
-  const projectCard = document.createElement("div");
+  const projectCard = document.createElement('div');
   projectCard.textContent = project.name;
-  const listContainer = document.createElement("ul");
+  const listContainer = document.createElement('ul');
   for (let i = 0; i < project.taskList.length; i++) {
     listContainer.appendChild(renderTask(project.taskList[i]));
   }
