@@ -9,11 +9,11 @@ class Task {
   }
 }
 
-function taskRender(task) {
+function renderTask(task) {
   const tasker = document.createElement("li");
 
   tasker.textContent = task.title;
   return tasker;
 }
 
-export { Task, taskRender };
+export { Task, renderTask };
