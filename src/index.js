@@ -1,3 +1,9 @@
-import './styles/style.css';
+import "./styles/style.css";
 
-alert('HEY')
+import { Task, taskRender } from "./Components/Taskcreator";
+
+let c = new Task("dsjk", "asdkl", "asdkl", "dajkl");
+let task = taskRender(c);
+
+const content = document.getElementById("content");
+content.appendChild(task);
