@@ -19,7 +19,9 @@ const renderProject = (project) => {
   projectCard.textContent = project.name;
   const listContainer = document.createElement('ul');
   for (let i = 0; i < project.taskList.length; i++) {
-    listContainer.appendChild(renderTask(project.taskList[i]));
+    const task = renderTask(project.taskList[i]);
+    task.setAttribute('project', project.name);
+    listContainer.appendChild(task);
   }
   projectCard.appendChild(listContainer);
   return projectCard;
