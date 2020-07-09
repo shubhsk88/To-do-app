@@ -9,25 +9,66 @@
     />
     <title>ToDo App</title>
   </head>
-  <body>
-    <div id="content">
+  <body class="max-w-screen-xl mx-auto">
+    <div id="content  " class="my-16">
       <input
+        class="bg-gray-200 rounded-lg appearance-none border-2 border-gray-200 rounded w-1/4 py-2 mx-4 px-4 h-16 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         type="text"
         id="project-name"
         name="project-name"
         placeholder="Project Name"
       />
-      <button class="new-project-btn">Add project</button>
+      <button
+        class="new-project-btn shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-4 px-4 rounded-lg"
+      >
+        Add project
+      </button>
 
-      <form action="" class="new-task-form">
-        <input type="text" id="task-title" />
-        <input type="text" id="task-description" />
-        <input type="datetime" id="task-due-date" />
-        <input type="text" id="task-priority" />
-        <input type="text" id="task-project" placeholder="project name" />
-        <input type="submit" class="new-task-btn" />
-      </form>
-
+      <div class="hidden-form">
+        <form action="" class="new-task-form flex flex-col">
+          <label for="task-title">Name</label>
+          <input type="text" id="task-title" />
+          <label for="task-description">Description</label>
+          <input type="text" id="task-description" />
+          <label for="task-due-date">Due Date and Time</label>
+          <input type="date" id="task-due-date" />
+          <div>
+            <div>Priority</div>
+            <label for="normal" class="mx-2">
+              <input
+                type="radio"
+                id="normal"
+                name="priority"
+                value="normal"
+                checked
+                class="mx-4"
+              />Normal
+            </label>
+            <label for="high" class="mx-2">
+              <input
+                type="radio"
+                id="high"
+                name="priority"
+                class="mx-4"
+                value="high"
+              />High
+            </label>
+            <label for="low" class="mx-2">
+              <input
+                type="radio"
+                id="low"
+                name="priority"
+                value="low"
+                class="mx-4"
+              />
+              Low
+            </label>
+          </div>
+          <label for="task-project">Categories</label>
+          <input type="text" id="task-project" placeholder="project name" />
+          <input type="submit" class="new-task-btn" />
+        </form>
+      </div>
       <div class="projects-list"></div>
     </div>
     <script src="main.js"></script>
