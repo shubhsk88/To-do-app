@@ -24,6 +24,8 @@
         Add project
       </button>
 
+      <button class="add-task-btn">Add task</button>
+
       <div class="hidden-form">
         <form action="" class="new-task-form flex flex-col">
           <label for="task-title">Name</label>
@@ -38,7 +40,7 @@
               <input
                 type="radio"
                 id="normal"
-                name="priority"
+                name="task-priority"
                 value="normal"
                 checked
                 class="mx-4"
@@ -48,7 +50,7 @@
               <input
                 type="radio"
                 id="high"
-                name="priority"
+                name="task-priority"
                 class="mx-4"
                 value="high"
               />High
@@ -57,19 +59,20 @@
               <input
                 type="radio"
                 id="low"
-                name="priority"
+                name="task-priority"
                 value="low"
                 class="mx-4"
               />
               Low
             </label>
           </div>
-          <label for="task-project">Categories</label>
-          <input type="text" id="task-project" placeholder="project name" />
+          <label for="task-project">Project</label>
+          <select name="project" id="project-selector"></select>
           <input type="submit" class="new-task-btn" />
         </form>
       </div>
       <div class="projects-list"></div>
+      <div class="project-details"></div>
     </div>
     <script src="main.js"></script>
   </body>

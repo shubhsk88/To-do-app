@@ -33,15 +33,15 @@ body {
   width: 100vw;
   min-height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  display: grid;
-  place-items: center;
 }
+
 .show-form {
   display: grid;
   place-items: center;
 }
+
 .new-task-form {
+  padding: 20px;
   width: 40%;
-  height: 40%;
   background: white;
 }

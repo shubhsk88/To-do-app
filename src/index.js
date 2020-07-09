@@ -12,7 +12,27 @@ const projectsList = [projectWork];
 
 const newProjectBtn = document.querySelector('.new-project-btn');
 const newTaskBtn = document.querySelector('.new-task-btn');
+const addTaskBtn = document.querySelector('.add-task-btn');
 const projectsListDiv = document.querySelector('.projects-list');
+const hiddenFormDiv = document.querySelector('.hidden-form');
+const projectDetailsDiv = document.querySelector('.project-details');
+
+
+addTaskBtn.addEventListener('click', () => {
+  const projectsSelector = document.getElementById('project-selector');
+  projectsSelector.textContent = '';
+
+  hiddenFormDiv.classList.add('show-form');
+
+  for(let i = 0; i < projectsList.length; i+=1){
+    const projectOption = document.createElement('option');
+    projectOption.textContent = projectsList[i].name;
+    projectOption.value = i;
+    projectsSelector.appendChild(projectOption);
+  }
+
+  addNewTaskBtnListener();
+});
 
 newProjectBtn.addEventListener('click', () => {
   const projectName = document.getElementById('project-name').value;
@@ -21,46 +41,31 @@ newProjectBtn.addEventListener('click', () => {
   renderAllProjects();
 });
 
-newTaskBtn.addEventListener('click', (event) => {
-  event.preventDefault();
+function addNewTaskBtnListener() {
+  newTaskBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+  
+    const taskTitle = document.getElementById('task-title').value;
+    const taskDescription = document.getElementById('task-description').value;
+    const taskDueDate = document.getElementById('task-due-date').value;
+    const taskPriority = document.querySelector('input[name="task-priority"]:checked').value;
+    const taskProjectSelect = document.getElementById('project-selector');
+    const taskProjectId = taskProjectSelect.options[taskProjectSelect.selectedIndex].value;
+  
+    const newTask = new Task(
+      taskTitle,
+      taskDescription,
+      taskDueDate,
+      taskPriority
+    );
+  
+    const taskProject = projectsList[taskProjectId];
+    taskProject.addTaskToList(newTask);
 
-  const taskTitle = document.getElementById('task-title').value;
-  const taskDescription = document.getElementById('task-description').value;
-  const taskDueDate = document.getElementById('task-due-date').value;
-  const taskPriority = document.getElementById('task-priority').value;
-  const taskProjectName = document.getElementById('task-project').value;
+    hiddenFormDiv.classList.remove('show-form');
+  });
+}
 
-  const newTask = new Task(
-    taskTitle,
-    taskDescription,
-    taskDueDate,
-    taskPriority
-  );
-
-  const taskProject = projectsList.filter(
-    (item) => item.name == taskProjectName
-  )[0];
-  taskProject.addTaskToList(newTask);
-
-  projectsListDiv.removeChild(projectsListDiv.lastChild);
-
-  projectsListDiv.appendChild(renderProject(taskProject));
-
-  // let list = renderProject(projectsList[0]);
-
-  // projectsListDiv.removeChild(projectsListDiv.lastChild);
-  // projectsListDiv.appendChild(list);
-  // const buttonDelete = document.querySelectorAll('.delete-button');
-  // console.log(buttonDelete);
-  // for (let i = 0; i < buttonDelete.length; i++) {
-  //   buttonDelete[i].addEventListener('click', () => {
-  //     taskProject.removeTaskFromList(i);
-  //     console.log(taskProject);
-  //     projectsListDiv.removeChild(projectsListDiv.lastChild);
-  //     projectsListDiv.appendChild(renderProject(taskProject));
-  //   });
-  // }
-});
 renderAllProjects();
 function renderAllProjects() {
   projectsListDiv.textContent = '';
@@ -69,8 +74,8 @@ function renderAllProjects() {
     projectDiv.classList.add('project-card');
     projectDiv.textContent = projectsList[i].name;
     projectDiv.addEventListener('click', function () {
-      // projectsListDiv.removeChild(projectsListDiv.lastChild)
-      projectsListDiv.appendChild(renderProject(projectsList[i]))
+      const projectDetailsElement = renderProject(projectsList[i]);
+      projectDetailsDiv.appendChild(projectDetailsElement);
       deleteTasks()
     });
     projectsListDiv.appendChild(projectDiv);
