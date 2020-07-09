@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.6%;
+}
+body {
+  font-size: 1.4rem;
+}
+
+.project-card {
+  padding: 4rem;
+  background-color: #bada55;
+  border: 10px solid red;
+  margin: 0 3rem;
+}
+
+.projects-list {
+  display: flex;
+  margin: 2rem;
+}

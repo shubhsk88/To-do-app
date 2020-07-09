@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToDo App</title>
-</head>
-<body>
-  <div id="content">
-    <input type="text" id="project-name" name="project-name" placeholder="Project Name">
-    <button class="new-project-btn">Add project</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>ToDo App</title>
+  </head>
+  <body>
+    <div id="content">
+      <input
+        type="text"
+        id="project-name"
+        name="project-name"
+        placeholder="Project Name"
+      />
+      <button class="new-project-btn">Add project</button>
 
-    <form action="" class="new-task-form">
-      <input type="text" id="task-title">
-      <input type="text" id="task-description">
-      <input type="datetime" id="task-due-date">
-      <input type="text" id="task-priority">
-      <input type="text" id="task-project" placeholder="project name">
-      <input type="submit" class="new-task-btn">
-    </form>
+      <form action="" class="new-task-form">
+        <input type="text" id="task-title" />
+        <input type="text" id="task-description" />
+        <input type="datetime" id="task-due-date" />
+        <input type="text" id="task-priority" />
+        <input type="text" id="task-project" placeholder="project name" />
+        <input type="submit" class="new-task-btn" />
+      </form>
 
-    <div class="projects-list"></div>
-  </div>
-  <script src="main.js"></script>
-</body>
+      <div class="projects-list"></div>
+    </div>
+    <script src="main.js"></script>
+  </body>
 </html>
