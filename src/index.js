@@ -75,6 +75,7 @@ function renderProjectDetails(project) {
   const projectDetailsElement = renderProject(project);
   projectDetailsDiv.appendChild(projectDetailsElement);
   deleteTasks();
+  editTasks();
 }
 function renderAllProjects() {
   projectsListDiv.textContent = '';
@@ -107,4 +108,33 @@ function deleteTasks() {
       taskElement.remove();
     });
   }
+}
+function editTasks() {
+  const editButtons = document.querySelectorAll('.edit-button');
+
+  for (let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener('click', (event) => {
+      const taskElement = event.target.parentElement;
+      const projectName = taskElement.getAttribute('project');
+      const taskProject = projectsList.filter(
+        (item) => item.name == projectName
+      )[0];
+      editTaskBtn(taskProject.taskList[i]);
+    });
+  }
+}
+
+function editTaskBtn(task) {
+  const taskTitle = document.getElementById('task-title');
+  const taskDescription = document.getElementById('task-description');
+  const taskDueDate = document.getElementById('task-due-date');
+  const taskPriority = document.querySelector(
+    'input[name="task-priority"]:checked'
+  );
+  const taskProjectSelect = document.getElementById('project-selector');
+  const taskProjectId =
+    taskProjectSelect.options[taskProjectSelect.selectedIndex];
+  taskTitle.value = task.title;
+
+  hiddenFormDiv.classList.add('show-form');
 }
