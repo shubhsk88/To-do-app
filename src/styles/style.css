@@ -14,15 +14,27 @@ body {
 }
 
 .project-card {
-  padding: 4rem;
-  background-color: #bada55;
-  border: 10px solid red;
-  margin: 0 3rem;
+  padding: 2rem;
+  background-color: #387780;
+
+  height: 15rem;
+  width: 18rem;
+  border-radius: 10px;
+  cursor: pointer;
+
+  color: white;
+  font-size: 3rem;
+  margin: 4rem;
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  align-items: center;
 }
 
 .projects-list {
   display: flex;
   margin: 2rem;
+  flex-wrap: wrap;
 }
 
 .hidden-form {
@@ -42,10 +54,18 @@ body {
 
 .new-task-form {
   padding: 20px;
-  width: 40%;
+  width: 30%;
+
   background: white;
 }
 
 .hide {
   display: none;
+}
+
+.add-task-btn {
+  position: absolute;
+  bottom: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
 }

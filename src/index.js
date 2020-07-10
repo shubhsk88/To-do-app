@@ -11,6 +11,7 @@ projectWork.addTaskToList(new Task('create socket', 'now', 'iwa', 2));
 const projectsList = [projectWork];
 
 const newProjectBtn = document.querySelector('.new-project-btn');
+const formProject = document.querySelector('.form-project');
 const newTaskBtn = document.querySelector('.new-task-btn');
 const addTaskBtn = document.querySelector('.add-task-btn');
 const projectsListDiv = document.querySelector('.projects-list');
@@ -21,11 +22,14 @@ addTaskBtn.addEventListener('click', () => {
   renderForm();
 });
 
-newProjectBtn.addEventListener('click', () => {
+newProjectBtn.addEventListener('click', (event) => {
   const projectName = document.getElementById('project-name').value;
-  const newProject = new Project(projectName);
-  projectsList.push(newProject);
-  renderAllProjects();
+  if (projectName !== '') {
+    event.preventDefault();
+    const newProject = new Project(projectName);
+    projectsList.push(newProject);
+    renderAllProjects();
+  }
 });
 
 function addNewTaskBtnListener(task = {}) {
@@ -35,11 +39,11 @@ function addNewTaskBtnListener(task = {}) {
 
   function submitButton(event) {
     event.preventDefault();
-  
+    formProject.classList.add('hide');
     const submitButtonElement = event.currentTarget;
-  
+
     const isEdit = submitButtonElement.getAttribute('edit');
-  
+
     const taskTitle = document.getElementById('task-title').value;
     const taskDescription = document.getElementById('task-description').value;
     const taskDueDate = document.getElementById('task-due-date').value;
@@ -49,10 +53,10 @@ function addNewTaskBtnListener(task = {}) {
     const taskProjectSelect = document.getElementById('project-selector');
     const taskProjectId =
       taskProjectSelect.options[taskProjectSelect.selectedIndex].value;
-  
+
     const taskProject = projectsList[taskProjectId];
-  
-    if(isEdit == "true"){
+
+    if (isEdit == 'true') {
       editTask.updateTask(
         taskTitle,
         taskDescription,
@@ -68,17 +72,15 @@ function addNewTaskBtnListener(task = {}) {
       );
       taskProject.addTaskToList(newTask);
     }
-    
+
     renderProjectDetails(taskProject);
     hiddenFormDiv.classList.remove('show-form');
     projectsListDiv.classList.add('hide');
     newTaskBtn.removeEventListener('click', submitButton);
-  
+
     // newTaskBtn.removeEventListener('click', () => submitButton(event));
   }
 }
-
-
 
 renderAllProjects();
 
@@ -93,10 +95,20 @@ function renderAllProjects() {
   projectsListDiv.textContent = '';
   for (let i = 0; i < projectsList.length; i++) {
     const projectDiv = document.createElement('div');
+    const projectCount = document.createElement('div');
+    projectCount.textContent = `${projectsList[i].taskList.length} items`;
+    projectCount.classList.add(
+      'text-3xl',
+      'py-2',
 
+      'text-gray-300'
+    );
     projectDiv.classList.add('project-card');
+
     projectDiv.textContent = projectsList[i].name;
+    projectDiv.appendChild(projectCount);
     projectDiv.addEventListener('click', function () {
+      formProject.classList.add('hide');
       projectsListDiv.classList.add('hide');
       renderProjectDetails(projectsList[i]);
     });
@@ -145,6 +157,7 @@ function renderForm(task = null) {
 
   for (let i = 0; i < projectsList.length; i += 1) {
     const projectOption = document.createElement('option');
+
     projectOption.textContent = projectsList[i].name;
     projectOption.value = i;
     projectsSelector.appendChild(projectOption);
