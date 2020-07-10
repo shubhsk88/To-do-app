@@ -18,19 +18,10 @@ const hiddenFormDiv = document.querySelector('.hidden-form');
 const projectDetailsDiv = document.querySelector('.project-details');
 
 addTaskBtn.addEventListener('click', () => {
-  const projectsSelector = document.getElementById('project-selector');
-  projectsSelector.textContent = '';
-
-  hiddenFormDiv.classList.add('show-form');
-
-  for (let i = 0; i < projectsList.length; i += 1) {
-    const projectOption = document.createElement('option');
-    projectOption.textContent = projectsList[i].name;
-    projectOption.value = i;
-    projectsSelector.appendChild(projectOption);
-  }
+  renderForm();
+  addNewTaskBtnListener();
 });
-addNewTaskBtnListener();
+
 newProjectBtn.addEventListener('click', () => {
   const projectName = document.getElementById('project-name').value;
   const newProject = new Project(projectName);
@@ -119,22 +110,38 @@ function editTasks() {
       const taskProject = projectsList.filter(
         (item) => item.name == projectName
       )[0];
-      editTaskBtn(taskProject.taskList[i]);
+
+      renderForm(taskProject.taskList[i]);
     });
   }
 }
 
-function editTaskBtn(task) {
-  const taskTitle = document.getElementById('task-title');
-  const taskDescription = document.getElementById('task-description');
-  const taskDueDate = document.getElementById('task-due-date');
-  const taskPriority = document.querySelector(
-    'input[name="task-priority"]:checked'
-  );
-  const taskProjectSelect = document.getElementById('project-selector');
-  const taskProjectId =
-    taskProjectSelect.options[taskProjectSelect.selectedIndex];
-  taskTitle.value = task.title;
+function renderForm(task = null) {
+  const projectsSelector = document.getElementById('project-selector');
+  projectsSelector.textContent = '';
 
   hiddenFormDiv.classList.add('show-form');
+
+  for (let i = 0; i < projectsList.length; i += 1) {
+    const projectOption = document.createElement('option');
+    projectOption.textContent = projectsList[i].name;
+    projectOption.value = i;
+    projectsSelector.appendChild(projectOption);
+  }
+
+  if (task) {
+    const taskTitle = document.getElementById('task-title');
+    const taskDescription = document.getElementById('task-description');
+    const taskDueDate = document.getElementById('task-due-date');
+    const taskPriority = document.querySelector(
+      'input[name="task-priority"]:checked'
+    );
+    const taskProjectSelect = document.getElementById('project-selector');
+    const taskProjectId =
+      taskProjectSelect.options[taskProjectSelect.selectedIndex];
+    taskTitle.value = task.title;
+    taskDescription.value = task.description;
+    taskDueDate.value = task.dueDate;
+    taskPriority.value = task.priority;
+  }
 }
