@@ -19,7 +19,6 @@ const projectDetailsDiv = document.querySelector('.project-details');
 
 addTaskBtn.addEventListener('click', () => {
   renderForm();
-  addNewTaskBtnListener();
 });
 
 newProjectBtn.addEventListener('click', () => {
@@ -29,10 +28,18 @@ newProjectBtn.addEventListener('click', () => {
   renderAllProjects();
 });
 
-function addNewTaskBtnListener() {
-  newTaskBtn.addEventListener('click', (event) => {
-    event.preventDefault();
+function addNewTaskBtnListener(task = {}) {
+  const editTask = task;
 
+  newTaskBtn.addEventListener('click', submitButton);
+
+  function submitButton(event) {
+    event.preventDefault();
+  
+    const submitButtonElement = event.currentTarget;
+  
+    const isEdit = submitButtonElement.getAttribute('edit');
+  
     const taskTitle = document.getElementById('task-title').value;
     const taskDescription = document.getElementById('task-description').value;
     const taskDueDate = document.getElementById('task-due-date').value;
@@ -42,22 +49,36 @@ function addNewTaskBtnListener() {
     const taskProjectSelect = document.getElementById('project-selector');
     const taskProjectId =
       taskProjectSelect.options[taskProjectSelect.selectedIndex].value;
-
-    const newTask = new Task(
-      taskTitle,
-      taskDescription,
-      taskDueDate,
-      taskPriority
-    );
-
+  
     const taskProject = projectsList[taskProjectId];
-    taskProject.addTaskToList(newTask);
-    console.log(taskProject);
+  
+    if(isEdit == "true"){
+      editTask.updateTask(
+        taskTitle,
+        taskDescription,
+        taskDueDate,
+        taskPriority
+      );
+    } else {
+      const newTask = new Task(
+        taskTitle,
+        taskDescription,
+        taskDueDate,
+        taskPriority
+      );
+      taskProject.addTaskToList(newTask);
+    }
+    
     renderProjectDetails(taskProject);
     hiddenFormDiv.classList.remove('show-form');
     projectsListDiv.classList.add('hide');
-  });
+    newTaskBtn.removeEventListener('click', submitButton);
+  
+    // newTaskBtn.removeEventListener('click', () => submitButton(event));
+  }
 }
+
+
 
 renderAllProjects();
 
@@ -143,5 +164,10 @@ function renderForm(task = null) {
     taskDescription.value = task.description;
     taskDueDate.value = task.dueDate;
     taskPriority.value = task.priority;
+    newTaskBtn.setAttribute('edit', true);
+    addNewTaskBtnListener(task);
+  } else {
+    newTaskBtn.setAttribute('edit', false);
+    addNewTaskBtnListener();
   }
 }
