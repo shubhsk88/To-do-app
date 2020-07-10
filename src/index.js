@@ -14,6 +14,7 @@ const newProjectBtn = document.querySelector('.new-project-btn');
 const formProject = document.querySelector('.form-project');
 const newTaskBtn = document.querySelector('.new-task-btn');
 const addTaskBtn = document.querySelector('.add-task-btn');
+const closeFormButton = document.querySelector('.close-form-btn');
 const projectsListDiv = document.querySelector('.projects-list');
 const hiddenFormDiv = document.querySelector('.hidden-form');
 const projectDetailsDiv = document.querySelector('.project-details');
@@ -38,8 +39,6 @@ function addNewTaskBtnListener(task = {}) {
   newTaskBtn.addEventListener('click', submitButton);
 
   function submitButton(event) {
-    event.preventDefault();
-    formProject.classList.add('hide');
     const submitButtonElement = event.currentTarget;
 
     const isEdit = submitButtonElement.getAttribute('edit');
@@ -56,29 +55,33 @@ function addNewTaskBtnListener(task = {}) {
 
     const taskProject = projectsList[taskProjectId];
 
-    if (isEdit == 'true') {
-      editTask.updateTask(
-        taskTitle,
-        taskDescription,
-        taskDueDate,
-        taskPriority
-      );
-    } else {
-      const newTask = new Task(
-        taskTitle,
-        taskDescription,
-        taskDueDate,
-        taskPriority
-      );
-      taskProject.addTaskToList(newTask);
+    if(taskTitle !== '' && taskDescription !== ''){
+      event.preventDefault();
+
+      formProject.classList.add('hide');
+      if (isEdit === 'true') {
+        editTask.updateTask(
+          taskTitle,
+          taskDescription,
+          taskDueDate,
+          taskPriority
+        );
+      } else {
+        const newTask = new Task(
+          taskTitle,
+          taskDescription,
+          taskDueDate,
+          taskPriority
+        );
+        taskProject.addTaskToList(newTask);
+      }
+  
+      renderProjectDetails(taskProject);
+      hiddenFormDiv.classList.remove('show-form');
+      projectsListDiv.classList.add('hide');
+      newTaskBtn.removeEventListener('click', submitButton);
+      addTaskBtn.classList.remove('hide');
     }
-
-    renderProjectDetails(taskProject);
-    hiddenFormDiv.classList.remove('show-form');
-    projectsListDiv.classList.add('hide');
-    newTaskBtn.removeEventListener('click', submitButton);
-
-    // newTaskBtn.removeEventListener('click', () => submitButton(event));
   }
 }
 
@@ -149,11 +152,19 @@ function editTasks() {
   }
 }
 
+closeFormButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  hiddenFormDiv.classList.remove('show-form');
+  addTaskBtn.classList.remove('hide');
+  newTaskBtn.removeEventListener('click', submitButton);
+})
+
 function renderForm(task = null) {
   const projectsSelector = document.getElementById('project-selector');
   projectsSelector.textContent = '';
 
   hiddenFormDiv.classList.add('show-form');
+  addTaskBtn.classList.add('hide');
 
   for (let i = 0; i < projectsList.length; i += 1) {
     const projectOption = document.createElement('option');
