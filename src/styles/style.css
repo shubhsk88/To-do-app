@@ -69,3 +69,13 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.project-details-card {
+  overflow: scroll;
+  height: 70vh;
+
+  border: 5px solid orangered;
+  width: 40%;
+  margin: 10rem auto;
+  padding: 4rem;
+}

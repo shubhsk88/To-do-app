@@ -19,15 +19,45 @@ class Task {
 
 function renderTask(task) {
   const tasker = document.createElement('li');
+  const checked = document.createElement('button');
+  checked.classList.add(
+    'border-2',
+    'mx-2',
+    'h-16',
+    'w-16',
+    'p-2',
+    'rounded-lg',
+    'border-gray-200',
+    'bg-white'
+  );
+  // checked.classList.add(...arr);
+  tasker.classList.add(
+    'flex',
+    'border',
+    'w-full',
+    'px-2',
+    'py-4',
+    'my-4',
+    'rounded',
+    'bg-gray-100',
+    'items-center',
+    'justify-between'
+  );
   const deleteButton = document.createElement('button');
+  let arr = ['rounded', 'p-4', 'text-2xl', 'bg-white', 'mx-2'];
+
   const editButton = document.createElement('button');
-  editButton.textContent = 'Edit';
-  deleteButton.textContent = 'Delete';
-  deleteButton.classList.add('delete-button');
-  editButton.classList.add('edit-button');
+  editButton.innerHTML = '<i class="fas fa-edit"></i>';
+  deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+  deleteButton.classList.add('delete-button', ...arr);
+  editButton.classList.add('edit-button', ...arr);
+  const textElement = document.createElement('p');
+  textElement.classList.add('text-2xl', 'font-semibold');
+  textElement.classList.add('flex-1');
+  textElement.textContent = task.title;
 
-  tasker.textContent = task.title;
-
+  tasker.appendChild(checked);
+  tasker.appendChild(textElement);
   tasker.appendChild(editButton);
 
   tasker.appendChild(deleteButton);
