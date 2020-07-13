@@ -8,7 +8,7 @@ projectWork.addTaskToList(new Task('create ui', 'now', 'iwa', 1, 'aa', true));
 projectWork.addTaskToList(new Task('create bd', 'as', 'iwa', 1));
 projectWork.addTaskToList(new Task('create socket', 'now', 'iwa', 2));
 // projectStudy.addTaskToList(new Task('study socket', 'now', 'iwa', 2));
-const projectsList = [projectWork];
+const projectsList = JSON.parse(localStorage.getItem('projectsList')) || [];
 
 const newProjectBtn = document.querySelector('.new-project-btn');
 const formProject = document.querySelector('.form-project');
@@ -29,6 +29,7 @@ newProjectBtn.addEventListener('click', (event) => {
     event.preventDefault();
     const newProject = new Project(projectName.value);
     projectsList.push(newProject);
+    addToStorage();
     clearInput(projectName);
     renderAllProjects();
   }
@@ -80,7 +81,7 @@ function addNewTaskBtnListener(task = {}) {
         );
         taskProject.addTaskToList(newTask);
       }
-  
+      addToStorage();
       renderProjectDetails(taskProject);
       hiddenFormDiv.classList.remove('show-form');
       projectsListDiv.classList.add('hide');
@@ -135,7 +136,7 @@ function deleteTasks() {
       const taskProject = projectsList.filter(
         (item) => item.name == projectName
       )[0];
-
+      addToStorage();
       taskProject.removeTaskFromList(i);
       taskElement.remove();
     });
@@ -151,7 +152,7 @@ function editTasks() {
       const taskProject = projectsList.filter(
         (item) => item.name == projectName
       )[0];
-
+      addToStorage();
       renderForm(taskProject.taskList[i]);
     });
   }
@@ -188,7 +189,7 @@ function renderForm(task = null) {
     taskDescription.value = task ? task.description : '';
     taskDueDate.value = task ? task.dueDate : '';
 
-  if (task) {
+  if (task) {projectWork
     
     const taskPriority = document.querySelector(
       'input[name="task-priority"]:checked'
@@ -202,4 +203,8 @@ function renderForm(task = null) {
     newTaskBtn.setAttribute('edit', false);
     addNewTaskBtnListener();
   }
+}
+
+function addToStorage() {
+  localStorage.setItem('projectsList', JSON.stringify(projectsList));
 }
