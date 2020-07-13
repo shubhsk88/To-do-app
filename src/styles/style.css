@@ -37,6 +37,14 @@ body {
   flex-wrap: wrap;
 }
 
+.close-form-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+
+}
+
 .hidden-form {
   display: none;
   position: absolute;
@@ -53,6 +61,7 @@ body {
 }
 
 .new-task-form {
+  position: relative;
   padding: 20px;
   width: 30%;
 
@@ -65,7 +74,7 @@ body {
 
 .add-task-btn {
   position: absolute;
-  bottom: 10rem;
+  top: 85vh;
   left: 50%;
   transform: translateX(-50%);
 }
