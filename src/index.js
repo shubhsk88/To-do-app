@@ -4,7 +4,7 @@ import { Project, renderProject } from './Components/ProjectCreator';
 
 const projectWork = new Project('work');
 const projectStudy = new Project('study');
-projectWork.addTaskToList(new Task('create ui', 'now', 'iwa', 1));
+projectWork.addTaskToList(new Task('create ui', 'now', 'iwa', 1, 'aa', true));
 projectWork.addTaskToList(new Task('create bd', 'as', 'iwa', 1));
 projectWork.addTaskToList(new Task('create socket', 'now', 'iwa', 2));
 // projectStudy.addTaskToList(new Task('study socket', 'now', 'iwa', 2));

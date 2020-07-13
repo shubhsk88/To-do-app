@@ -24,7 +24,7 @@ body {
 
   color: white;
   font-size: 3rem;
-  margin: 4rem;
+  margin: 4rem 1rem;
   display: flex;
   flex-direction: column;
   text-transform: capitalize;
@@ -33,7 +33,6 @@ body {
 
 .projects-list {
   display: flex;
-  margin: 2rem;
   flex-wrap: wrap;
 }
 
@@ -80,11 +79,23 @@ body {
 }
 
 .project-details-card {
-  overflow: scroll;
+  overflow-y: auto;
   height: 70vh;
 
   border: 5px solid orangered;
-  width: 40%;
+  max-width: 600px;
   margin: 10rem auto;
   padding: 4rem;
+}
+
+.fa-check,
+.fa-edit,
+.fa-trash {
+  pointer-events: none;
+}
+
+.close-details-btn {
+  position: absolute;
+  top: 4rem;
+  left: 8rem;
 }

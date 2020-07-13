@@ -17,6 +17,12 @@ const renderProject = (project) => {
   const projectCard = document.createElement('div');
   projectCard.classList.add('project-details-card');
   const header = document.createElement('div');
+  const backButton = document.createElement('button');
+  const projectsListDiv = document.querySelector('.projects-list');
+  const formProject = document.querySelector('.form-project');
+
+  backButton.classList.add('close-details-btn', 'bg-green-800', 'py-2', 'px-4', 'text-white', 'rounded-lg');
+  backButton.textContent = 'Back';
   header.textContent = project.name;
   header.classList.add(
     'text-center',
@@ -32,7 +38,14 @@ const renderProject = (project) => {
     task.setAttribute('project', project.name);
     listContainer.appendChild(task);
   }
+  backButton.addEventListener('click', () => {
+    projectCard.classList.add('hide');
+    projectsListDiv.classList.remove('hide');
+    formProject.classList.remove('hide');
+  })
   projectCard.appendChild(listContainer);
+  projectCard.appendChild(backButton);
+
   return projectCard;
 };
 

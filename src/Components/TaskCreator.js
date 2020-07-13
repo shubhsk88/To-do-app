@@ -53,14 +53,31 @@ function renderTask(task) {
   editButton.classList.add('edit-button', ...arr);
   const textElement = document.createElement('p');
   textElement.classList.add('text-2xl', 'font-semibold');
-  textElement.classList.add('flex-1');
+  textElement.classList.add('flex-1', 'overflow-x-auto');
   textElement.textContent = task.title;
 
+  if(task.done) {
+    textElement.classList.add('line-through');
+    checked.innerHTML = '<i class="fas fa-check"></i>';
+  } else {
+    textElement.classList.remove('line-through');
+    checked.innerHTML = '';
+  }
   tasker.appendChild(checked);
   tasker.appendChild(textElement);
   tasker.appendChild(editButton);
 
   tasker.appendChild(deleteButton);
+  checked.addEventListener('click', () => {
+    task.done = !task.done;
+    if(task.done) {
+      textElement.classList.add('line-through');
+      checked.innerHTML = '<i class="fas fa-check"></i>';
+    } else {
+      textElement.classList.remove('line-through');
+      checked.innerHTML = '';
+    }
+  })
   return tasker;
 }
 
