@@ -60,7 +60,7 @@ function addNewTaskBtnListener(task = {}) {
 
     const taskProject = projectsList[taskProjectId];
 
-    if(taskTitle !== '' && taskDescription !== ''){
+    if (taskTitle !== '' && taskDescription !== '') {
       event.preventDefault();
 
       formProject.classList.add('hide');
@@ -80,7 +80,7 @@ function addNewTaskBtnListener(task = {}) {
         );
         taskProject.addTaskToList(newTask);
       }
-  
+
       renderProjectDetails(taskProject);
       hiddenFormDiv.classList.remove('show-form');
       projectsListDiv.classList.add('hide');
@@ -103,18 +103,11 @@ function renderAllProjects() {
   projectsListDiv.textContent = '';
   for (let i = 0; i < projectsList.length; i++) {
     const projectDiv = document.createElement('div');
-    const projectCount = document.createElement('div');
-    projectCount.textContent = `${projectsList[i].taskList.length} items`;
-    projectCount.classList.add(
-      'text-3xl',
-      'py-2',
 
-      'text-gray-300'
-    );
     projectDiv.classList.add('project-card');
 
     projectDiv.textContent = projectsList[i].name;
-    projectDiv.appendChild(projectCount);
+
     projectDiv.addEventListener('click', function () {
       formProject.classList.add('hide');
       projectsListDiv.classList.add('hide');
@@ -162,7 +155,7 @@ closeFormButton.addEventListener('click', (event) => {
   hiddenFormDiv.classList.remove('show-form');
   addTaskBtn.classList.remove('hide');
   newTaskBtn.removeEventListener('click', submitButton);
-})
+});
 
 function renderForm(task = null) {
   const projectsSelector = document.getElementById('project-selector');
@@ -181,24 +174,23 @@ function renderForm(task = null) {
     projectOption.textContent = projectsList[i].name;
     projectOption.value = i;
     projectsSelector.appendChild(projectOption);
-
   }
 
-    taskTitle.value = task ? task.title : '';
-    taskDescription.value = task ? task.description : '';
-    taskDueDate.value = task ? task.dueDate : '';
+  taskTitle.value = task ? task.title : '';
+  taskDescription.value = task ? task.description : '';
+  taskDueDate.value = task ? task.dueDate : '';
 
   if (task) {
-    
     const taskPriority = document.querySelector(
       'input[name="task-priority"]:checked'
     );
     const taskProjectSelect = document.getElementById('project-selector');
-    const taskProjectId = taskProjectSelect.options[taskProjectSelect.selectedIndex];
+    const taskProjectId =
+      taskProjectSelect.options[taskProjectSelect.selectedIndex];
     taskPriority.value = task.priority;
     newTaskBtn.setAttribute('edit', true);
     addNewTaskBtnListener(task);
-  } else {    
+  } else {
     newTaskBtn.setAttribute('edit', false);
     addNewTaskBtnListener();
   }
