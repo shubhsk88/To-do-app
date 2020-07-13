@@ -24,14 +24,19 @@ addTaskBtn.addEventListener('click', () => {
 });
 
 newProjectBtn.addEventListener('click', (event) => {
-  const projectName = document.getElementById('project-name').value;
-  if (projectName !== '') {
+  const projectName = document.getElementById('project-name');
+  if (projectName.value !== '') {
     event.preventDefault();
-    const newProject = new Project(projectName);
+    const newProject = new Project(projectName.value);
     projectsList.push(newProject);
+    clearInput(projectName);
     renderAllProjects();
   }
 });
+
+function clearInput(input) {
+  input.value = '';
+}
 
 function addNewTaskBtnListener(task = {}) {
   const editTask = task;
@@ -161,6 +166,10 @@ closeFormButton.addEventListener('click', (event) => {
 
 function renderForm(task = null) {
   const projectsSelector = document.getElementById('project-selector');
+  const taskTitle = document.getElementById('task-title');
+  const taskDescription = document.getElementById('task-description');
+  const taskDueDate = document.getElementById('task-due-date');
+
   projectsSelector.textContent = '';
 
   hiddenFormDiv.classList.add('show-form');
@@ -172,25 +181,24 @@ function renderForm(task = null) {
     projectOption.textContent = projectsList[i].name;
     projectOption.value = i;
     projectsSelector.appendChild(projectOption);
+
   }
 
+    taskTitle.value = task ? task.title : '';
+    taskDescription.value = task ? task.description : '';
+    taskDueDate.value = task ? task.dueDate : '';
+
   if (task) {
-    const taskTitle = document.getElementById('task-title');
-    const taskDescription = document.getElementById('task-description');
-    const taskDueDate = document.getElementById('task-due-date');
+    
     const taskPriority = document.querySelector(
       'input[name="task-priority"]:checked'
     );
     const taskProjectSelect = document.getElementById('project-selector');
-    const taskProjectId =
-      taskProjectSelect.options[taskProjectSelect.selectedIndex];
-    taskTitle.value = task.title;
-    taskDescription.value = task.description;
-    taskDueDate.value = task.dueDate;
+    const taskProjectId = taskProjectSelect.options[taskProjectSelect.selectedIndex];
     taskPriority.value = task.priority;
     newTaskBtn.setAttribute('edit', true);
     addNewTaskBtnListener(task);
-  } else {
+  } else {    
     newTaskBtn.setAttribute('edit', false);
     addNewTaskBtnListener();
   }
