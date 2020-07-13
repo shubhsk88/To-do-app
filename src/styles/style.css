@@ -14,7 +14,6 @@ body {
 }
 
 .project-card {
-  padding: 2rem;
   background-color: #387780;
 
   height: 15rem;
@@ -25,10 +24,9 @@ body {
   color: white;
   font-size: 3rem;
   margin: 4rem 1rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  place-items: center;
   text-transform: capitalize;
-  align-items: center;
 }
 
 .projects-list {
@@ -41,7 +39,6 @@ body {
   top: 10px;
   right: 10px;
   font-size: 2rem;
-
 }
 
 .hidden-form {
@@ -82,9 +79,10 @@ body {
   overflow-y: auto;
   height: 70vh;
 
-  border: 5px solid orangered;
+  border: 2px solid #276749;
+  border-radius: 15px;
   max-width: 600px;
-  margin: 10rem auto;
+  margin: 4rem auto;
   padding: 4rem;
 }
 

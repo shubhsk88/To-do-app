@@ -21,12 +21,20 @@ const renderProject = (project) => {
   const projectsListDiv = document.querySelector('.projects-list');
   const formProject = document.querySelector('.form-project');
 
-  backButton.classList.add('close-details-btn', 'bg-green-800', 'py-2', 'px-4', 'text-white', 'rounded-lg');
-  backButton.textContent = 'Back';
+  backButton.classList.add(
+    'close-details-btn',
+    'bg-green-800',
+    'py-4',
+    'px-6',
+    'text-2xl',
+    'text-white',
+    'rounded-lg'
+  );
+  backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back';
   header.textContent = project.name;
   header.classList.add(
     'text-center',
-    'text-6xl',
+    'text-4xl',
     'py-2',
     'capitalize',
     'font-bold'
@@ -42,7 +50,7 @@ const renderProject = (project) => {
     projectCard.classList.add('hide');
     projectsListDiv.classList.remove('hide');
     formProject.classList.remove('hide');
-  })
+  });
   projectCard.appendChild(listContainer);
   projectCard.appendChild(backButton);
 
