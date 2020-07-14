@@ -1,14 +1,24 @@
 import './styles/style.css';
-import { Task, renderTask } from './Components/TaskCreator';
+import { Task } from './Components/TaskCreator';
 import { Project, renderProject } from './Components/ProjectCreator';
 
-const projectWork = new Project('work');
-const projectStudy = new Project('study');
-projectWork.addTaskToList(new Task('create ui', 'now', 'iwa', 1, 'aa', true));
-projectWork.addTaskToList(new Task('create bd', 'as', 'iwa', 1));
-projectWork.addTaskToList(new Task('create socket', 'now', 'iwa', 2));
-// projectStudy.addTaskToList(new Task('study socket', 'now', 'iwa', 2));
-const projectsList = JSON.parse(localStorage.getItem('projectsList')) || [];
+const projectsList = [];
+
+
+function initializeProjects() {
+  const projectsListObj = JSON.parse(localStorage.getItem('projectsList')) || []; //
+  projectsListObj.forEach(project => {
+    const newProject = new Project(project.name);
+    project.taskList.forEach(task => {
+      const newTask = new Task(task.title, task.description, task.dueDate, task.priority, task.notes, task.done);
+      newProject.taskList.push(newTask);
+    })
+    projectsList.push(newProject);
+  })
+}
+
+initializeProjects();
+
 
 const newProjectBtn = document.querySelector('.new-project-btn');
 const formProject = document.querySelector('.form-project');
@@ -132,6 +142,7 @@ function deleteTasks() {
       addToStorage();
       taskProject.removeTaskFromList(i);
       taskElement.remove();
+      addToStorage();
     });
   }
 }
