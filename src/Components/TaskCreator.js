@@ -7,6 +7,7 @@ class Task {
     this.priority = priority;
     this.notes = notes;
   }
+
   updateTask(title, description, dueDate, priority, notes = '', done = false) {
     this.title = title;
     this.description = description;
@@ -28,7 +29,7 @@ function renderTask(task) {
     'p-2',
     'rounded-lg',
     'border-gray-200',
-    'bg-white'
+    'bg-white',
   );
   // checked.classList.add(...arr);
   tasker.classList.add(
@@ -41,10 +42,10 @@ function renderTask(task) {
     'rounded',
     'bg-gray-100',
     'items-center',
-    'justify-between'
+    'justify-between',
   );
   const deleteButton = document.createElement('button');
-  let arr = ['rounded', 'p-4', 'text-2xl', 'bg-white', 'mx-2'];
+  const arr = ['rounded', 'p-4', 'text-2xl', 'bg-white', 'mx-2'];
 
   const editButton = document.createElement('button');
   editButton.innerHTML = '<i class="fas fa-edit"></i>';
@@ -56,7 +57,7 @@ function renderTask(task) {
   textElement.classList.add('flex-1', 'overflow-x-auto');
   textElement.textContent = task.title;
 
-  if(task.done) {
+  if (task.done) {
     textElement.classList.add('line-through');
     checked.innerHTML = '<i class="fas fa-check"></i>';
   } else {
@@ -70,14 +71,14 @@ function renderTask(task) {
   tasker.appendChild(deleteButton);
   checked.addEventListener('click', () => {
     task.done = !task.done;
-    if(task.done) {
+    if (task.done) {
       textElement.classList.add('line-through');
       checked.innerHTML = '<i class="fas fa-check"></i>';
     } else {
       textElement.classList.remove('line-through');
       checked.innerHTML = '';
     }
-  })
+  });
   return tasker;
 }
 

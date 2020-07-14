@@ -9,18 +9,17 @@
 html {
   font-size: 62.6%;
 }
+
 body {
   font-size: 1.4rem;
 }
 
 .project-card {
   background-color: #387780;
-
   height: 15rem;
   width: 18rem;
   border-radius: 10px;
   cursor: pointer;
-
   color: white;
   font-size: 3rem;
   margin: 4rem 1rem;
@@ -60,7 +59,6 @@ body {
   position: relative;
   padding: 20px;
   width: 30%;
-
   background: white;
 }
 
@@ -78,7 +76,6 @@ body {
 .project-details-card {
   overflow-y: auto;
   height: 70vh;
-
   border: 2px solid #276749;
   border-radius: 15px;
   max-width: 600px;

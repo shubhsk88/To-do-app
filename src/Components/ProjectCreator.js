@@ -5,9 +5,11 @@ class Project {
     this.name = name;
     this.taskList = [];
   }
+
   addTaskToList(task) {
     this.taskList.push(task);
   }
+
   removeTaskFromList(taskIdx) {
     this.taskList.splice(taskIdx, 1);
   }
@@ -28,7 +30,7 @@ const renderProject = (project) => {
     'px-6',
     'text-2xl',
     'text-white',
-    'rounded-lg'
+    'rounded-lg',
   );
   backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back';
   header.textContent = project.name;
@@ -37,11 +39,11 @@ const renderProject = (project) => {
     'text-4xl',
     'py-2',
     'capitalize',
-    'font-bold'
+    'font-bold',
   );
   projectCard.append(header);
   const listContainer = document.createElement('ul');
-  for (let i = 0; i < project.taskList.length; i++) {
+  for (let i = 0; i < project.taskList.length; i += 1) {
     const task = renderTask(project.taskList[i]);
     task.setAttribute('project', project.name);
     listContainer.appendChild(task);
