@@ -1,4 +1,3 @@
-import './styles/style.css';
 import { Task } from './Components/TaskCreator';
 import { Project, renderProject } from './Components/ProjectCreator';
 
