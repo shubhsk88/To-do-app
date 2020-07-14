@@ -15,12 +15,15 @@ Add new projects and append tasks to them. Mark tasks as checked and edit or del
 
 ## Live Demo
 
-[To-do List](https://raw.githack.com/shubhsk88/To-do-app/tree/feaure-to-do/index.html)
+[To-do List](https://raw.githack.com/shubhsk88/To-do-app/feaure-to-do/dist/index.html)
 
 ## Setup
 
-- Clone this repository with: `git clone https://github.com/shubhsk88/To-do-app.git `
-- Navigate to the project folder (To-do-app) and open the `index.html` with the browser.
+- Clone this repository with: `git clone https://github.com/shubhsk88/To-do-app.git`.
+- Navigate to the project folder (To-do-app).
+- Run `npm install`.
+- Run `npm build`.
+- Open the `dist/index.html` with the browser.
 
 ## 👤 Authors
 
