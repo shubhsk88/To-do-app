@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.6%;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
+.project-card {
+  background-color: #387780;
+  height: 15rem;
+  width: 18rem;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 3rem;
+  margin: 4rem 1rem;
+  display: grid;
+  place-items: center;
+  text-transform: capitalize;
+}
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.close-form-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+}
+
+.hidden-form {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.show-form {
+  display: grid;
+  place-items: center;
+}
+
+.new-task-form {
+  position: relative;
+  padding: 20px;
+  width: 30%;
+  background: white;
+}
+
+.hide {
+  display: none;
+}
+
+.add-task-btn {
+  position: absolute;
+  top: 85vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.project-details-card {
+  overflow-y: auto;
+  height: 70vh;
+  border: 2px solid #276749;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 4rem;
+}
+
+.fa-check,
+.fa-edit,
+.fa-trash {
+  pointer-events: none;
+}
+
+.close-details-btn {
+  position: absolute;
+  top: 4rem;
+  left: 8rem;
+}

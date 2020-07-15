@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+    <title>ToDo App</title>
+  </head>
+  <body class="max-w-screen-xl mx-auto">
+    <h1 class="text-center text-6xl font-bold my-4">Todo List</h1>
+    <div id="content" class="my-16">
+      <form class="form-project">
+        <input
+          required
+          maxlength="10"
+          class="bg-gray-200 rounded-lg appearance-none border-2 border-gray-200 rounded w-1/4 py-2 mx-4 px-4 h-16 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+          type="text"
+          id="project-name"
+          name="project-name"
+          placeholder="Project Name"
+        />
+        <button
+          type="submit"
+          class="new-project-btn shadow bg-green-800 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-4 px-4 rounded-lg"
+        >
+          Add project
+        </button>
+      </form>
+
+      <div class="hidden-form">
+        <form action="" class="new-task-form flex rounded-lg shadow flex-col">
+          <button class="close-form-btn">
+            <i class="fas fa-times-circle"></i>
+          </button>
+          <label for="task-title" class="px-4 text-2xl font-bold my-2"
+            >Name</label
+          >
+          <input
+            type="text"
+            class="bg-gray-200 rounded-lg appearance-none border-2 my-2 border-gray-200 rounded py-2 mx-4 px-4 h-16 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+            id="task-title"
+            required
+          />
+          <label for="task-description" class="px-4 text-2xl font-bold my-2"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="bg-gray-200 rounded-lg appearance-none border-2 my-2 border-gray-200 rounded py-2 mx-4 px-4 h-16 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+            id="task-description"
+            required
+          />
+          <label for="task-due-date" class="px-4 text-2xl font-bold my-2"
+            >Due Date</label
+          >
+          <input
+            type="date"
+            class="bg-gray-200 rounded-lg appearance-none border-2 my-2 border-gray-200 rounded py-2 mx-4 px-4 h-16 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+            id="task-due-date"
+            required
+          />
+          <div class="my-2">
+            <div class="px-4 text-2xl font-bold my-2">Priority</div>
+            <label for="normal" class="mx-2">
+              <input
+                type="radio"
+                id="normal"
+                name="task-priority"
+                value="normal"
+                checked
+                class="mx-4"
+              />Normal
+            </label>
+            <label for="high" class="mx-2">
+              <input
+                type="radio"
+                id="high"
+                name="task-priority"
+                class="mx-4"
+                value="high"
+              />High
+            </label>
+            <label for="low" class="mx-2">
+              <input
+                type="radio"
+                id="low"
+                name="task-priority"
+                value="low"
+                class="mx-4"
+              />
+              Low
+            </label>
+          </div>
+          <label for="task-project" class="px-4 text-2xl font-bold my-2"
+            >Category</label
+          >
+          <select
+            name="project"
+            class="bg-gray-200 rounded-lg appearance-none border-2 mt-2 mb-4 border-gray-200 rounded py-2 mx-4 px-4 h-16 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+            id="project-selector"
+          ></select>
+          <input
+            type="submit"
+            class="new-task-btn px-4 py-2 bg-green-800 text-3xl my-6 mx-4 rounded-lg shadow-2xl hover:bg-green-600 focus:outline-none focus:shadow-none text-white"
+          />
+        </form>
+      </div>
+      <div class="projects-list py-2"></div>
+      <div class="task-list"></div>
+      <div class="project-details"></div>
+      <button
+        class="add-task-btn px-8 py-6 bg-green-800 text-3xl rounded-lg shadow-2xl hover:bg-green-600 focus:outline-none focus:shadow-none text-white"
+      >
+        <i class="fas fa-plus"></i> Add task
+      </button>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
